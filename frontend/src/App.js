@@ -1,26 +1,53 @@
 import React from "react";
-import logo from './logo.svg';
-import './App.css';
-import MenuApp from "./components/Menu";
-import UserList from "./components/User";
-import FooterApp from "./components/Footer";
+import {BrowserRouter, Route, Routes} from "react-router-dom";
 import axios from "axios";
+import './logo.svg';
+import './App.css';
+import Menu from "./components/Menu";
+import UserList from "./components/User";
+import Footer from "./components/Footer";
+import Home from "./components/Home";
+import ProjectList from "./components/Project";
+import TodoList from "./components/Todo";
+import UsersProject from "./components/UsersProject";
 
 class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            'users': []
+            'users': [],
+            'projects': [],
+            'todos': []
         }
     }
 
     componentDidMount() {
-        axios.get('http://127.0.0.1:8000/api/users/')
+        axios.get('http://127.0.0.1:8000/api/users')
             .then(response => {
-                const users = response.data
+                const users = response.data.results
                 this.setState(
                     {
                         'users': users
+                    }
+                )
+            }).catch(error => console.log(error))
+
+        axios.get('http://127.0.0.1:8000/api/projects')
+            .then(response => {
+                const projects = response.data.results
+                this.setState(
+                    {
+                        'projects': projects
+                    }
+                )
+            }).catch(error => console.log(error))
+
+        axios.get('http://127.0.0.1:8000/api/todos')
+            .then(response => {
+                const todos = response.data.results
+                this.setState(
+                    {
+                        'todos': todos
                     }
                 )
             }).catch(error => console.log(error))
@@ -28,34 +55,21 @@ class App extends React.Component {
 
     render() {
         return (
-            <div style={styles.body}>
-                <div style={styles.menu}><MenuApp/></div>
-                <div style={styles.content}><UserList users={this.state.users}/></div>
-                <div style={styles.footer}><FooterApp/></div>
-            </div>
+            <BrowserRouter>
+                <Menu/>
+                <Routes>
+                    <Route path={'/'} element={<Home/>}/>
+                    <Route path={'/users'} element={<UserList users={this.state.users}/>}/>
+                    <Route path={'/projects'} element={<ProjectList projects={this.state.projects}/>}/>
+                    <Route path={'/projects/:id'} element={<UsersProject projects={this.state.projects}
+                                                                         users={this.state.users}/>}/>
+                    <Route path={'/todos'} element={<TodoList todos={this.state.todos} projects={this.state.projects}
+                                                              users={this.state.users}/>}/>
+                </Routes>
+                <Footer/>
+            </BrowserRouter>
         )
     }
-}
-
-const styles = {
-    body: {
-        minHeight: 500,
-        display: 'flex',
-        justifyContent: 'space-between',
-        flexDirection: 'column',
-    },
-    menu: {
-        background: 'grey',
-        flex: 0.5,
-    },
-    content: {
-        background: 'lightgrey',
-        flex: 6,
-    },
-    footer: {
-        background: 'lightyellow',
-        flex: 1,
-    },
 }
 
 export default App;
