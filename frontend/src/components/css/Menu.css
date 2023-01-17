@@ -1,0 +1,36 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    display: flex;
+    background-color: #223;
+    padding: 0;
+    min-width: 375px;
+}
+
+.nav-item {
+    list-style-type: none;
+    margin: 0;
+}
+
+.nav-item:hover {
+    background-color: #aaa;
+    .nav-link.color: red;
+}
+
+.nav-item:active {
+    background-color: #777;
+}
+
+.nav-link {
+    display: inline-block;
+    text-decoration: none;
+    color: #fff;
+    padding: 1em 0.5em;
+}
+
+.active {
+    color: red;
+}
