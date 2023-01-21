@@ -9,7 +9,7 @@ import Footer from "./components/Footer";
 import Home from "./components/Home";
 import ProjectList from "./components/Project";
 import TodoList from "./components/Todo";
-import UsersProject from "./components/UsersProject";
+import TodosProject from "./components/TodosProject";
 
 class App extends React.Component {
     constructor(props) {
@@ -18,6 +18,9 @@ class App extends React.Component {
             'users': [],
             'projects': [],
             'todos': []
+        }
+        if (window.location.pathname !== '/') {
+            window.location.assign('/');
         }
     }
 
@@ -42,6 +45,8 @@ class App extends React.Component {
                 )
             }).catch(error => console.log(error))
 
+        // axios.get('http://127.0.0.1:8000/api/todos', {auth: {username: 'Ivan', password: 'ivanivan'}})
+        // axios.get('http://127.0.0.1:8000/api/todos', {headers: {Authorization: 'Token 97f922c1fba895535ce0f64b8474c54e804ba42b'}})
         axios.get('http://127.0.0.1:8000/api/todos')
             .then(response => {
                 const todos = response.data.results
@@ -55,19 +60,31 @@ class App extends React.Component {
 
     render() {
         return (
-            <BrowserRouter>
-                <Menu/>
-                <Routes>
-                    <Route path={'/'} element={<Home/>}/>
-                    <Route path={'/users'} element={<UserList users={this.state.users}/>}/>
-                    <Route path={'/projects'} element={<ProjectList projects={this.state.projects}/>}/>
-                    <Route path={'/projects/:id'} element={<UsersProject projects={this.state.projects}
-                                                                         users={this.state.users}/>}/>
-                    <Route path={'/todos'} element={<TodoList todos={this.state.todos} projects={this.state.projects}
-                                                              users={this.state.users}/>}/>
-                </Routes>
-                <Footer/>
-            </BrowserRouter>
+            <div className={'wrapper'}>
+                <BrowserRouter>
+                    <div className="menu">
+                        <Menu/>
+                    </div>
+                    <div className={'content'}>
+                        <Routes>
+                            <Route path={'/'} element={<Home/>}/>
+                            <Route path={'/users'} element={<UserList users={this.state.users}/>}/>
+                            <Route path={'/projects'} element={<ProjectList projects={this.state.projects}
+                                                                            todos={this.state.todos}/>}/>
+                            <Route path={'/projects/:id'} element={<TodosProject projects={this.state.projects}
+                                                                                 users={this.state.users}
+                                                                                 todos={this.state.todos}/>}/>
+                            <Route path={'/todos'} element={<TodoList todos={this.state.todos}
+                                                      projects={this.state.projects}
+                                                      users={this.state.users}/>}/>
+                        </Routes>
+                    </div>
+                    <div className={'footer'}>
+                        <Footer/>
+                    </div>
+                </BrowserRouter>
+            </div>
+
         )
     }
 }

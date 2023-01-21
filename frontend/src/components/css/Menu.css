@@ -1,36 +1,29 @@
-* {
-    margin: 0;
-    padding: 0;
-}
-
 .navbar {
     display: flex;
-    background-color: #223;
-    padding: 0;
-    min-width: 375px;
+    margin: auto;
+    background-color: #556;
 }
 
-.nav-item {
+.navbar button {
+    display: none;
+}
+
+.navbar ul {
+    display: flex;
+}
+
+.navbar ul li {
     list-style-type: none;
-    margin: 0;
-}
-
-.nav-item:hover {
-    background-color: #aaa;
-    .nav-link.color: red;
-}
-
-.nav-item:active {
-    background-color: #777;
 }
 
 .nav-link {
-    display: inline-block;
     text-decoration: none;
-    color: #fff;
-    padding: 1em 0.5em;
+    padding: 1em;
+    color: white;
 }
 
-.active {
-    color: red;
+.nav-link:hover {
+    text-decoration: underline;
+    background-color: #f3f3f3;
+    color: #556
 }

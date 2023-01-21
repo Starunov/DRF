@@ -12,20 +12,27 @@ const ProjectItem = ({project}) => {
                 <a href={project.repo} target={'_blank'}>{project.repo}</a>
             </td>
             <td>
-                {project.users.length}
+                {project.todosCount}
             </td>
         </tr>
     )
 }
 
 
-const ProjectList = ({projects}) => {
+const ProjectList = ({projects, todos}) => {
+    projects.forEach((project) => {
+        project.todosCount = todos.filter((todo) => project.id === todo.project).length
+    })
     return (
-        <table>
-            <th>Name project</th>
-            <th>Reference</th>
-            <th>Count users</th>
-            {projects.map((project) => <ProjectItem project={project}/>)}
+        <table className={'table'}>
+            <thead>
+                <tr>
+                    <th>Проект</th>
+                    <th>Ссылка</th>
+                    <th>Количество заметок</th>
+                </tr>
+            </thead>
+            <tbody>{projects.map((project) => <ProjectItem project={project}/>)}</tbody>
         </table>
     )
 }

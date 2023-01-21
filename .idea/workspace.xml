@@ -42,7 +42,7 @@
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;database.data.extractors.current.export.id&quot;: &quot;Comma-separated (CSV)_id&quot;,
     &quot;database.data.extractors.current.id&quot;: &quot;Comma-separated (CSV)_id&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/serstar/PycharmProjects/Lessons_DRF/DRF/TODO&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/serstar/PycharmProjects/Lessons_DRF/DRF/frontend/src/components/css&quot;,
     &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -56,9 +56,12 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/frontend/src/components/css" />
+      <recent name="$PROJECT_DIR$/frontend/src/components/js" />
       <recent name="$PROJECT_DIR$/TODO" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/frontend/src/components/css" />
       <recent name="$PROJECT_DIR$/frontend/src/components" />
     </key>
   </component>
@@ -105,6 +108,10 @@
       <workItem from="1673802039092" duration="15865000" />
       <workItem from="1673869477947" duration="11588000" />
       <workItem from="1673934391488" duration="33637000" />
+      <workItem from="1674062015374" duration="6531000" />
+      <workItem from="1674100754308" duration="1786000" />
+      <workItem from="1674219357829" duration="21294000" />
+      <workItem from="1674277000779" duration="17288000" />
     </task>
     <servers />
   </component>

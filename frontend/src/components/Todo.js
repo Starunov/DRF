@@ -1,13 +1,15 @@
 import React from "react";
-import './css/Todo.css';
 
-const TodoItem = ({is_actual, text, project, user}) => {
+const TodoItem = ({item}) => {
     return (
-        <ul className={`cont-item ${is_actual ? "open" : "close"}`}>
-            <li><b>Заметка: </b>{text}</li>
-            <li><b>К проекту: </b>{project}</li>
-            <li><b>Автор: </b>{user}</li>
-        </ul>
+        <tr>
+            <td>{item.project}</td>
+            <td>{item.text}</td>
+            <td>{item.created_at}</td>
+            <td>{item.updated_at}</td>
+            <td>{item.user}</td>
+            <td>{item.is_actual ? 'Нет' : 'Да'}</td>
+        </tr>
     )
 }
 
@@ -15,7 +17,6 @@ const TodoList = ({todos, projects, users}) => {
     const newTodos = []
     let project = null;
     let user = null;
-
     todos.map((todoObj) => {
         projects.forEach((item) => {
             if (todoObj.project === item.id) {
@@ -34,16 +35,26 @@ const TodoList = ({todos, projects, users}) => {
             text: todoObj.text,
             project: project,
             user: user,
+            created_at: new Date(todoObj.created_at).toLocaleString(),
+            updated_at: new Date(todoObj.updated_at).toLocaleString(),
         })
     })
-
     return (
-        <div className={'container'}>
-            {newTodos.map((item) => <TodoItem is_actual={item.is_actual}
-                                              text={item.text}
-                                              project={item.project}
-                                              user={item.user}/>)}
-        </div>
+        <table className={'table'}>
+            <thead>
+                <tr>
+                    <th>Проект</th>
+                    <th>Заметка</th>
+                    <th>Создано</th>
+                    <th>Обновлено</th>
+                    <th>Добавил</th>
+                    <th>Решена</th>
+                </tr>
+            </thead>
+            <tbody>
+                {newTodos.map((item) => <TodoItem item={item}/>)}
+            </tbody>
+        </table>
     )
 }
 export default TodoList
