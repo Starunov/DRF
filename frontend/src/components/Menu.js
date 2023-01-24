@@ -1,6 +1,6 @@
 import React from "react";
 import {Link} from "react-router-dom";
-import './css/Menu.css';
+import './css/Menu.css'
 
 const Menu = () => {
     const all_links = document.querySelectorAll('.nav-link');
@@ -14,26 +14,34 @@ const Menu = () => {
     })
 
     const handler = (event) => {
-        prevActiveLink.classList.remove('active');
-        event.target.classList.add('active');
-        prevActiveLink = event.target;
+        try {
+            prevActiveLink.classList.remove('active');
+            event.target.classList.add('active');
+            prevActiveLink = event.target;
+        } catch {
+
+        }
+
     }
 
     return (
-        <ul className={'navbar'}>
-            <li className={'nav-item'} onClick={handler}>
-                <Link to={'/'} className={'nav-link'}>Главная</Link>
-            </li>
-            <li className={'nav-item'} onClick={handler}>
-                <Link to={'/users'} className={'nav-link'}>Пользователи</Link>
-            </li>
-            <li className={'nav-item'} onClick={handler}>
-                <Link to={'/projects'} className={'nav-link'}>Проекты</Link>
-            </li>
-            <li className={'nav-item'} onClick={handler}>
-                <Link to={'/todos'} className={'nav-link'}>Заметки</Link>
-            </li>
-        </ul>
+        <div className={'navbar'}>
+            <ul>
+                <li onClick={handler}>
+                    <Link to={'/'} className={'nav-link'}>Главная</Link>
+                </li>
+                <li onClick={handler}>
+                    <Link to={'/users'} className={'nav-link'}>Пользователи</Link>
+                </li>
+                <li onClick={handler}>
+                    <Link to={'/projects'} className={'nav-link'}>Проекты</Link>
+                </li>
+                <li onClick={handler}>
+                    <Link to={'/todos'} className={'nav-link'}>Заметки</Link>
+                </li>
+            </ul>
+        </div>
+
     )
 }
 
