@@ -11,3 +11,6 @@ class User(models.Model):
 
     def __str__(self):
         return f"{self.firstname} {self.lastname}"
+
+    class Meta:
+        ordering = ['lastname']

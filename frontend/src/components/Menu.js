@@ -2,45 +2,33 @@ import React from "react";
 import {Link} from "react-router-dom";
 import './css/Menu.css'
 
-const Menu = () => {
-    const all_links = document.querySelectorAll('.nav-link');
-    let prevActiveLink = null;
-
-    all_links.forEach((el) => {
-        if (el.href.replace(window.location.origin, '') === window.location.pathname) {
-            prevActiveLink = el;
-            prevActiveLink.classList.add('active');
-        }
-    })
-
-    const handler = (event) => {
-        try {
-            prevActiveLink.classList.remove('active');
-            event.target.classList.add('active');
-            prevActiveLink = event.target;
-        } catch {
-
-        }
-
-    }
-
+const Menu = ({isAuthenticated, logOut, username}) => {
     return (
         <div className={'navbar'}>
-            <ul>
-                <li onClick={handler}>
+            <ul className={'nav'}>
+                <li>
                     <Link to={'/'} className={'nav-link'}>Главная</Link>
                 </li>
-                <li onClick={handler}>
+                <li>
                     <Link to={'/users'} className={'nav-link'}>Пользователи</Link>
                 </li>
-                <li onClick={handler}>
+                <li>
                     <Link to={'/projects'} className={'nav-link'}>Проекты</Link>
                 </li>
-                <li onClick={handler}>
+                <li>
                     <Link to={'/todos'} className={'nav-link'}>Заметки</Link>
                 </li>
             </ul>
+            <div className={'login'}>
+                <span className={'username'}>{username}</span>
+                {
+                    isAuthenticated() ?
+                        <span onClick={logOut} className={'nav-link'} style={{cursor: "pointer"}}>log out</span> :
+                        <Link to={'/login'} className={'nav-link'}>Log in</Link>
+                }
+            </div>
         </div>
+
 
     )
 }

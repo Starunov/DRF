@@ -13,7 +13,7 @@ const TodoItem = ({item}) => {
     )
 }
 
-const TodoList = ({todos, projects, users}) => {
+const TodoList = ({users, projects, todos}) => {
     const newTodos = []
     let project = null;
     let user = null;
@@ -39,22 +39,28 @@ const TodoList = ({todos, projects, users}) => {
             updated_at: new Date(todoObj.updated_at).toLocaleString(),
         })
     })
+    if (!newTodos) {
+        return
+    }
     return (
-        <table className={'table'}>
-            <thead>
-                <tr>
-                    <th>Проект</th>
-                    <th>Заметка</th>
-                    <th>Создано</th>
-                    <th>Обновлено</th>
-                    <th>Добавил</th>
-                    <th>Решена</th>
-                </tr>
-            </thead>
-            <tbody>
-                {newTodos.map((item) => <TodoItem item={item}/>)}
-            </tbody>
-        </table>
+        <>
+            <table className={'table'}>
+                <thead>
+                    <tr>
+                        <th>Проект</th>
+                        <th>Заметка</th>
+                        <th>Создано</th>
+                        <th>Обновлено</th>
+                        <th>Добавил</th>
+                        <th>Решена</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {newTodos.map((item) => <TodoItem item={item}/>)}
+                </tbody>
+            </table>
+        </>
+
     )
 }
 export default TodoList

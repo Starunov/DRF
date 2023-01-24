@@ -2,9 +2,15 @@ import React from "react";
 
 
 const Home = () => {
-    return (
-        <h1>Это главная страница</h1>
+    const homeStyle = {
+        textAlign: 'center'
+    }
+    return(
+        <h1 style={homeStyle}>
+            Главная
+        </h1>
     )
 }
+
 
 export default Home
