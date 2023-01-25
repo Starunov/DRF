@@ -16,17 +16,17 @@ const TodoRow = ({todo}) => {
 
 const TodosProject = ({projects, users, todos}) => {
     let {id} = useParams()
-    let projectName = projects.filter((item) => item.id === id)[0].name
+    let projectName = projects.results.filter((item) => item.id === id)[0].name
     let allTodos = []
-    todos.filter((todo) => todo.project === id).forEach((todo) => {
-        users.forEach((user) => {
+    todos.results.filter((todo) => todo.project === id).forEach((todo) => {
+        users.results.forEach((user) => {
             if (todo.user === user.id) {
                 todo.user = user.username;
             }
         })
         allTodos.push(todo);
     })
-    console.log(allTodos)
+
     return (
         <div style={{textAlign: 'center'}}>
             <h1>{projectName}</h1>

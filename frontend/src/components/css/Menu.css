@@ -1,18 +1,14 @@
 .navbar {
     display: flex;
-    margin: auto;
+    justify-content: space-between;
     background-color: #556;
 }
 
-.navbar button {
-    display: none;
-}
-
-.navbar ul {
+.nav {
     display: flex;
 }
 
-.navbar ul li {
+.nav li {
     list-style-type: none;
 }
 
@@ -26,4 +22,16 @@
     text-decoration: underline;
     background-color: #f3f3f3;
     color: #556
+}
+
+.login {
+    display: flex;
+    padding-right: 50px;
+}
+
+.username {
+    align-self: center;
+    padding-right: 20px;
+    color: white;
+    font-size: 20px;
 }
