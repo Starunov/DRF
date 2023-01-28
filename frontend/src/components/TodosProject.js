@@ -16,10 +16,10 @@ const TodoRow = ({todo}) => {
 
 const TodosProject = ({projects, users, todos}) => {
     let {id} = useParams()
-    let projectName = projects.results.filter((item) => item.id === id)[0].name
+    let projectName = projects.filter((item) => item.id === id)[0].name
     let allTodos = []
-    todos.results.filter((todo) => todo.project === id).forEach((todo) => {
-        users.results.forEach((user) => {
+    todos.filter((todo) => todo.project === id).forEach((todo) => {
+        users.forEach((user) => {
             if (todo.user === user.id) {
                 todo.user = user.username;
             }
