@@ -1,6 +1,6 @@
 from rest_framework.serializers import ModelSerializer
 from .models import Project, ToDo
-from users.serializers import UserModelSerializer
+from users.serializers import UserModelSerializerV1
 
 
 class ProjectModelSerializerBase(ModelSerializer):
@@ -10,7 +10,7 @@ class ProjectModelSerializerBase(ModelSerializer):
 
 
 class ProjectModelSerializer(ModelSerializer):
-    users = UserModelSerializer(many=True)
+    users = UserModelSerializerV1(many=True)
 
     class Meta:
         model = Project
