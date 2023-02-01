@@ -16,10 +16,10 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Python Script" />
         <option value="HTML File" />
         <option value="CSS File" />
         <option value="JavaScript File" />
+        <option value="Python Script" />
       </list>
     </option>
   </component>
@@ -240,7 +240,7 @@
     <option name="version" value="3" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/DRF$Test__TODO_tests_TestProjectViewSet_test_create_admin.coverage" NAME="Test: TODO.tests.TestProjectViewSet.test_create_admin Coverage Results" MODIFIED="1674925944657" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/DRF$Test__TODO_tests_TestProjectViewSet_test_create_admin.coverage" NAME="Test: TODO.tests.TestProjectViewSet.test_create_admin Coverage Results" MODIFIED="1675176421399" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/DRF$Test__TODO_tests_TestFuncs_test_other_project.coverage" NAME="Test: TODO.tests.TestFuncs.test_other_project Coverage Results" MODIFIED="1674837580982" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/DRF$Test__TODO_tests_TestTodoViewSet_test_delete_guest.coverage" NAME="Test: TODO.tests.TestTodoViewSet.test_delete_guest Coverage Results" MODIFIED="1674924647489" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/DRF$Test__users_tests_TestFuncs.coverage" NAME="Test: users.tests.TestFuncs Coverage Results" MODIFIED="1674847535119" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
@@ -268,7 +268,7 @@
     <SUITE FILE_PATH="coverage/DRF$Test__TODO_tests_TestProjectViewSet_test_create_project_manager.coverage" NAME="Test: TODO.tests.TestProjectViewSet.test_create_project_manager Coverage Results" MODIFIED="1674832291099" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/DRF$Test__TODO_tests_TestProjectViewSet_test_get_list.coverage" NAME="Test: TODO.tests.TestProjectViewSet.test_get_list Coverage Results" MODIFIED="1674898642095" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/DRF$Test__TODO_tests_TestTodoViewSet_test_delete_admin.coverage" NAME="Test: TODO.tests.TestTodoViewSet.test_delete_admin Coverage Results" MODIFIED="1674924661153" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
-    <SUITE FILE_PATH="coverage/DRF$Test__users_tests_TestUserViewSet.coverage" NAME="Test: users.tests.TestUserViewSet Coverage Results" MODIFIED="1674847525485" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/DRF$Test__users_tests_TestUserViewSet.coverage" NAME="Test: users.tests.TestUserViewSet Coverage Results" MODIFIED="1675178341130" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/DRF$Test__users_tests_TestUserViewSet_test_get_detail.coverage" NAME="Test: users.tests.TestUserViewSet.test_get_detail Coverage Results" MODIFIED="1674826478580" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/DRF$Test__TODO_tests_TestProjectViewSet_test_get_detail.coverage" NAME="Test: TODO.tests.TestProjectViewSet.test_get_detail Coverage Results" MODIFIED="1674901025318" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/DRF$Test__TODO_tests_TestTodoViewSet_test_create_todo.coverage" NAME="Test: TODO.tests.TestTodoViewSet.test_create_todo Coverage Results" MODIFIED="1674927221200" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
