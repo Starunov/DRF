@@ -1,6 +1,6 @@
 import React from "react";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
-import axios from "axios";
+import axios, {all} from "axios";
 import Cookies from "universal-cookie";
 import './logo.svg';
 import './App.css';
@@ -90,35 +90,94 @@ class App extends React.Component {
 
     loadData() {
         const headers = this.getHeaders()
-        axios.get('http://127.0.0.1:8000/api/users', {headers})
-            .then(response => {
-                const users = response.data.results
-                this.setState(
-                    {
-                        'users': users
-                    }
-                )
-            }).catch(error => console.log(error))
+        axios.post('http://127.0.0.1:8000/graphql/', {
+            'query': `{
+                allUsers {
+                    username
+                    firstName
+                    lastName
+                    email
+                }
+            }`
+        }, {headers}).then((response) => {
+            const {data: {data: {allUsers}}} = response
+            this.setState({
+                'users': allUsers
+            })
+        }).catch(error => console.log(error))
+        // axios.get('http://127.0.0.1:8000/api/users', {headers})
+        //     .then(response => {
+        //         const users = response.data.results
+        //         this.setState(
+        //             {
+        //                 'users': users
+        //             }
+        //         )
+        //     }).catch(error => console.log(error))
 
-        axios.get('http://127.0.0.1:8000/api/projects', {headers})
-            .then(response => {
-                const projects = response.data.results
-                this.setState(
-                    {
-                        'projects': projects
+        axios.post("http://127.0.0.1:8000/graphql/", {
+            "query": `{
+                allProjects {
+                    id
+                    name
+                    repo
+                    users {
+                        username
                     }
-                )
-            }).catch(error => console.log(error))
+                }
+            }`,
+            "variables": null
+        }, {headers}).
+            then((response) => {
+                const {data: {data: {allProjects}}} = response
+                this.setState({
+                    'projects': allProjects
+                })
+        }).catch(error => console.log(error))
 
-        axios.get('http://127.0.0.1:8000/api/todos', {headers})
-            .then(response => {
-                const todos = response.data.results
-                this.setState(
-                    {
-                        'todos': todos
+        // axios.get('http://127.0.0.1:8000/api/projects', {headers})
+        //     .then(response => {
+        //         const projects = response.data.results
+        //         console.log(projects)
+        //         this.setState(
+        //             {
+        //                 'projects': projects
+        //             }
+        //         )
+        //     }).catch(error => console.log(error))
+
+        axios.post('http://127.0.0.1:8000/graphql/', {
+            'query': `{
+                allTodos {
+                    text
+                    createdAt
+                    updatedAt
+                    isActual
+                    author: user {
+                        username
                     }
-                )
-            }).catch(error => console.log(error))
+                    project {
+                        id
+                        name
+                    }
+                }
+            }`
+        }, {headers}).then(response => {
+            const {data: {data: {allTodos}}} = response
+            this.setState({
+                'todos': allTodos
+            })
+        }).catch(error => console.log(error))
+
+        // axios.get('http://127.0.0.1:8000/api/todos', {headers})
+        //     .then(response => {
+        //         const todos = response.data.results
+        //         this.setState(
+        //             {
+        //                 'todos': todos
+        //             }
+        //         )
+        //     }).catch(error => console.log(error))
     }
 
     componentDidMount() {
@@ -139,12 +198,9 @@ class App extends React.Component {
                     <Route path={'/users'} element={<UserList users={this.state.users}/>}/>
                     <Route path={'/projects'} element={<ProjectList projects={this.state.projects}
                                                                     todos={this.state.todos}/>}/>
-                    <Route path={'/projects/:id'} element={<TodosProject projects={this.state.projects}
-                                                                         users={this.state.users}
-                                                                         todos={this.state.todos}/>}/>
-                    <Route path={'/todos'} element={<TodoList users={this.state.users}
-                                                              projects={this.state.projects}
-                                                              todos={this.state.todos}/>}/>
+                    <Route path={'/projects/:id'} element={<TodosProject todos={this.state.todos}
+                                                                         projects={this.state.projects}/>}/>
+                    <Route path={'/todos'} element={<TodoList todos={this.state.todos}/>}/>
                     <Route path={'/login'} element={<LogIn getToken={this.getToken}/>}/>
                 </Routes>
                 <Footer/>

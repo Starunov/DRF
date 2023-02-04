@@ -3,43 +3,19 @@ import React from "react";
 const TodoItem = ({item}) => {
     return (
         <tr>
-            <td>{item.project}</td>
+            <td>{item.project.name}</td>
             <td>{item.text}</td>
-            <td>{item.created_at}</td>
-            <td>{item.updated_at}</td>
-            <td>{item.user}</td>
-            <td>{item.is_actual ? 'Нет' : 'Да'}</td>
+            <td>{item.createdAt}</td>
+            <td>{item.updatedAt}</td>
+            <td>{item.author.username}</td>
+            <td>{item.isActual ? 'Нет' : 'Да'}</td>
         </tr>
     )
 }
 
-const TodoList = ({users, projects, todos}) => {
-    const newTodos = []
-    let project = null;
-    let user = null;
-    todos.map((todoObj) => {
-        projects.forEach((item) => {
-            if (todoObj.project === item.id) {
-                project = item.name;
-            }
-        })
+const TodoList = ({todos}) => {
 
-        users.forEach((item) => {
-            if (todoObj.user === item.id) {
-                user = item.username;
-            }
-        })
-
-        newTodos.push({
-            is_actual: todoObj.is_actual,
-            text: todoObj.text,
-            project: project,
-            user: user,
-            created_at: new Date(todoObj.created_at).toLocaleString(),
-            updated_at: new Date(todoObj.updated_at).toLocaleString(),
-        })
-    })
-    if (!newTodos) {
+    if (!todos) {
         return
     }
     return (
@@ -56,7 +32,7 @@ const TodoList = ({users, projects, todos}) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {newTodos.map((item) => <TodoItem item={item}/>)}
+                    {todos.map((item) => <TodoItem item={item}/>)}
                 </tbody>
             </table>
         </>

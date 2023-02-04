@@ -5,28 +5,19 @@ import {useParams} from "react-router-dom";
 const TodoRow = ({todo}) => {
     return (
         <tr>
-            <td>{todo.user}</td>
+            <td>{todo.author.username}</td>
             <td>{todo.text}</td>
-            <td>{todo.created_at}</td>
-            <td>{todo.updated_at}</td>
-            <td>{todo.is_actual? 'Нет' : 'Да'}</td>
+            <td>{todo.createdAt}</td>
+            <td>{todo.updatedAt}</td>
+            <td>{todo.isActual? 'Нет' : 'Да'}</td>
         </tr>
     )
 }
 
-const TodosProject = ({projects, users, todos}) => {
+const TodosProject = ({todos, projects}) => {
     let {id} = useParams()
-    let projectName = projects.filter((item) => item.id === id)[0].name
-    let allTodos = []
-    todos.filter((todo) => todo.project === id).forEach((todo) => {
-        users.forEach((user) => {
-            if (todo.user === user.id) {
-                todo.user = user.username;
-            }
-        })
-        allTodos.push(todo);
-    })
-
+    const todoFiltered = todos.filter((todo) => todo.project.id === id)
+    const projectName = projects.find((project) => project.id === id).name
     return (
         <div style={{textAlign: 'center'}}>
             <h1>{projectName}</h1>
@@ -41,10 +32,10 @@ const TodosProject = ({projects, users, todos}) => {
                 </tr>
                 </thead>
                 <tbody>
-                    {allTodos.map((todo) => <TodoRow todo={todo}/>)}
+                    {todoFiltered.map(todo => <TodoRow todo={todo}/>)}
                 </tbody>
             </table>
-            <spam>Всего задач к проекту: {allTodos.length}</spam>
+            <spam>Всего задач к проекту: {todoFiltered.length}</spam>
         </div>
     )
 }

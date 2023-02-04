@@ -12,6 +12,9 @@ const ProjectItem = ({project}) => {
                 <a href={project.repo} target={'_blank'}>{project.repo}</a>
             </td>
             <td>
+                {project.completedTodo}
+            </td>
+            <td>
                 {project.todosCount}
             </td>
         </tr>
@@ -21,7 +24,8 @@ const ProjectItem = ({project}) => {
 
 const ProjectList = ({projects, todos}) => {
     projects.forEach((project) => {
-        project.todosCount = todos.filter((todo) => project.id === todo.project).length
+        project.todosCount = todos.filter((todo) => project.id === todo.project.id).length
+        project.completedTodo = todos.filter((todo) => project.id === todo.project.id && todo.isActual === false).length
     })
     return (
         <table className={'table'}>
@@ -29,7 +33,8 @@ const ProjectList = ({projects, todos}) => {
                 <tr>
                     <th>Проект</th>
                     <th>Ссылка</th>
-                    <th>Количество заметок</th>
+                    <th>Решенных задач</th>
+                    <th>Всего задач</th>
                 </tr>
             </thead>
             <tbody>{projects.map((project) => <ProjectItem project={project}/>)}</tbody>
