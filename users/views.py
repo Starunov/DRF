@@ -16,9 +16,10 @@ from rest_framework.viewsets import ModelViewSet
 
 class UserCustomViewSet(ModelViewSet):
     queryset = User.objects.all()
+    serializer_class = UserModelSerializerV2
 
-    def get_serializer_class(self):
-        if self.request.version == '0.1':
-            return UserModelSerializerV1
-        elif self.request.version == '0.2':
-            return UserModelSerializerV2
+    # def get_serializer_class(self):
+    #     if self.request.version == '0.1':
+    #         return UserModelSerializerV1
+    #     elif self.request.version == '0.2':
+    #         return UserModelSerializerV2
