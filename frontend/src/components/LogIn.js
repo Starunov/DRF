@@ -1,27 +1,28 @@
 import React from "react";
 import './css/LogIn.css'
 
-
 const LogIn = ({getToken}) => {
 
     const sendForm = (e) => {
         e.preventDefault()
-        const login = e.target.login.value
+        const username = e.target.username.value
         const password = e.target.password.value
-        getToken(login, password)
+        getToken(username, password)
     }
 
     return (
-        <form onSubmit={sendForm} className={'loginForm'}>
-            <h1>Вход</h1>
-            <div>
-                <input type="text" placeholder={'Логин'} className={'input'} name={'login'}/>
+        <form onSubmit={sendForm} className={'form'}>
+            <h1 className={'form_header'}>Вход</h1>
+            <div className={'form_group'}>
+                <label htmlFor={'username'} className={'lbl'}>Username</label>
+                <input type="text" className={'input'} name={'username'}/>
             </div>
-            <div>
-                <input type="password" placeholder={'Пароль'} className={'input'} name={'password'}/>
+            <div className={'form_group'}>
+                <label htmlFor={'password'} className={'lbl'}>Password</label>
+                <input type="password" className={'input'} name={'password'}/>
             </div>
-            <div>
-                <button type={'submit'} className={'input'}>Войти</button>
+            <div className={'form_group'}>
+                <button type={'submit'} className={'input btn'}>Войти</button>
             </div>
         </form>
     )

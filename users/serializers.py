@@ -13,6 +13,7 @@ class UserModelSerializerV1(ModelSerializer):
 
 
 class UserModelSerializerV2(ModelSerializer):
+
     class Meta:
         model = User
         fields = [
@@ -22,5 +23,5 @@ class UserModelSerializerV2(ModelSerializer):
             'last_name',
             'is_superuser',
             'is_staff',
-            'email'
+            'email',
         ]
