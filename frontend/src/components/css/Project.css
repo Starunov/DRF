@@ -1,0 +1,21 @@
+.input {
+    box-sizing: border-box;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    padding: 3px 8px;
+    font-size: 18px;
+    width: 100%;
+    letter-spacing: 1px;
+}
+
+.btn {
+    background-color: #556;
+    color: white;
+    font-size: 14px;
+    padding: 5px;
+    width: 25%;
+}
+
+.btn:hover {
+	cursor: pointer;
+}

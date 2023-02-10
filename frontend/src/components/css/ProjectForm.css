@@ -1,5 +1,5 @@
 .form {
-    width: 300px;
+    width: 50%;
     margin: 0 auto;
     font-family: sans-serif;
 }
@@ -11,11 +11,6 @@
 
 .form_group {
     margin-bottom: 15px;
-}
-
-.select_group {
-    display: flex;
-    justify-content: space-between;
 }
 
 .lbl {
@@ -32,7 +27,6 @@
     padding: 3px 8px;
     font-size: 16px;
     width: 100%;
-    letter-spacing: 1px;
 }
 
 .btn {
@@ -47,7 +41,22 @@
 	cursor: pointer;
 }
 
+.btn_new {
+	background-color: #556;
+    color: white;
+	text-decoration: none;
+	padding: 5px;
+	border-radius: 5px;
+	width: 300px;
+	text-align: center;
+	margin: 20px auto 20px auto;
+}
+
 .pTag {
     text-align: center;
     font-size: 14px;
+}
+
+.h-100 {
+    height: 100px;
 }

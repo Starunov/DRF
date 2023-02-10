@@ -44,4 +44,5 @@ class ToDoModelViewSet(ModelViewSet):
         obj = self.get_object()
         obj.is_actual = False
         obj.save()
-        return Response(headers=request.headers)
+        from rest_framework import status
+        return Response(status=status.HTTP_200_OK)
