@@ -56,10 +56,11 @@
 }</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/frontend" />
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/frontend/src/components/css/bootstrap" />
       <recent name="$PROJECT_DIR$/frontend/src/components/css" />
       <recent name="$PROJECT_DIR$/frontend/src/components/js" />
-      <recent name="$PROJECT_DIR$/TODO" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/frontend/src/components/css" />

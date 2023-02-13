@@ -15,6 +15,7 @@ import TodosProject from "./components/TodosProject";
 import LogIn from "./components/LogIn";
 import ProjectForm from "./components/ProjectForm";
 import Page404 from "./components/Page404";
+import TodoForm from "./components/TodoForm";
 
 class App extends React.Component {
 
@@ -33,6 +34,7 @@ class App extends React.Component {
         this.logOut = this.logOut.bind(this)
         this.addProject = this.addProject.bind(this)
         this.deleteProject = this.deleteProject.bind(this)
+        this.addTodo = this.addTodo.bind(this)
         this.deleteTodo = this.deleteTodo.bind(this)
     }
 
@@ -65,7 +67,7 @@ class App extends React.Component {
 
 
     getToken(username, password) {
-        axios.post('http://127.0.0.1:8000/api-token-auth/', {username: username, password: password}).then(response => {
+        axios.post('http://89.108.81.16:8000/api-token-auth/', {username: username, password: password}).then(response => {
             this.setToken(response.data.token);
             localStorage.setItem('username', username);
             window.location.pathname = '/';
@@ -101,7 +103,7 @@ class App extends React.Component {
 
     loadData() {
         const headers = this.getHeaders()
-        axios.post('http://127.0.0.1:8000/graphql/', {
+        axios.post('http://89.108.81.16:8000/graphql/', {
             'query': `{
                 allUsers {
                     id
@@ -128,7 +130,7 @@ class App extends React.Component {
                 }
             })
         }).catch(error => console.log(error))
-        // axios.get('http://127.0.0.1:8000/api/users', {headers})
+        // axios.get('http://89.108.81.16:8000/api/users', {headers})
         //     .then(response => {
         //         const users = response.data.results
         //         this.setState(
@@ -138,7 +140,7 @@ class App extends React.Component {
         //         )
         //     }).catch(error => console.log(error))
 
-        axios.post("http://127.0.0.1:8000/graphql/", {
+        axios.post("http://89.108.81.16:8000/graphql/", {
             "query": `{
                 allProjects {
                     id
@@ -157,7 +159,7 @@ class App extends React.Component {
             })
         }).catch(error => console.log(error))
 
-        // axios.get('http://127.0.0.1:8000/api/projects', {headers})
+        // axios.get('http://89.108.81.16:8000/api/projects', {headers})
         //     .then(response => {
         //         const projects = response.data.results
         //         console.log(projects)
@@ -168,7 +170,7 @@ class App extends React.Component {
         //         )
         //     }).catch(error => console.log(error))
 
-        axios.post('http://127.0.0.1:8000/graphql/', {
+        axios.post('http://89.108.81.16:8000/graphql/', {
             'query': `{
                 allTodos {
                     id
@@ -192,7 +194,7 @@ class App extends React.Component {
             })
         }).catch(error => console.log(error))
 
-        // axios.get('http://127.0.0.1:8000/api/todos', {headers})
+        // axios.get('http://89.108.81.16:8000/api/todos', {headers})
         //     .then(response => {
         //         const todos = response.data.results
         //         this.setState(
@@ -211,7 +213,7 @@ class App extends React.Component {
             users: users
         }
         axios.post(
-            'http://127.0.0.1:8000/api/projects/', data, {headers}
+            'http://89.108.81.16:8000/api/projects/', data, {headers}
         ).then(response => {
             this.setState({projects: [...this.state.projects, response.data.data]})
             swal({
@@ -235,7 +237,7 @@ class App extends React.Component {
         }).then((ok) => {
             if (ok) {
                 const headers = this.getHeaders()
-                axios.delete(`http://127.0.0.1:8000/api/projects/${id}`, {
+                axios.delete(`http://89.108.81.16:8000/api/projects/${id}`, {
                     headers
                 }).then(() => {
                     this.setState({projects: this.state.projects.filter((project) => project.id !== id)})
@@ -249,11 +251,38 @@ class App extends React.Component {
         })
     }
 
-    addTodo() {
-
+    addTodo(text, project) {
+        let headers = this.getHeaders()
+        const user = this.state.users.filter((user) => user.username === localStorage.getItem('username'))[0].id
+        const data = {
+            text: text,
+            project: project,
+            user: user
+        }
+        axios.post(
+            'http://89.108.81.16:8000/api/todos/', data, {headers}
+        ).then(response => {
+            this.setState({todos: [...this.state.todos, response.data.data]})
+            swal({
+                title: 'Задача создана!',
+                icon: 'success',
+            }).then((ok) => {
+                if (ok) {
+                    window.location.pathname = '/todos';
+                }
+            })
+        }).catch(error => console.log(error))
     }
 
     deleteTodo(id) {
+        const todo = this.state.todos.filter((todo) => todo.id === id)[0]
+        if (!todo.isActual) {
+            swal({
+                title: 'Задача уже решена!',
+                icon: 'info'
+            })
+            return
+        }
         swal({
             title: 'Задача решена?',
             text: 'Задача будет помечена как решенная.',
@@ -263,10 +292,15 @@ class App extends React.Component {
         }).then((ok) => {
             if (ok) {
                 const headers = this.getHeaders()
-                axios.delete(`http://127.0.0.1:8000/api/todos/${id}`, {
+                axios.delete(`http://89.108.81.16:8000/api/todos/${id}`, {
                     headers
                 }).then(() => {
-                    this.setState({todos: this.state.todos.filter((todo) => todo.id !== id)})
+                    this.state.todos.forEach((todo) => {
+                        if (todo.id === id) {
+                            todo.isActual = false;
+                        }
+                    })
+                    this.setState({todos: this.state.todos})
                     swal('Задача решена.', '', 'success');
                 }).catch((error) => console.log(error))
             }
@@ -275,8 +309,6 @@ class App extends React.Component {
 
     componentDidMount() {
         this.getTokenFromStorage()
-
-
     }
 
     render() {
@@ -298,7 +330,15 @@ class App extends React.Component {
                         <Page404/>
                     }/>
                     <Route path={'/todos'} element={<TodoList todos={this.state.todos}
-                                                              deleteTodo={this.deleteTodo}/>}/>
+                                                              deleteTodo={this.deleteTodo}
+                                                              groupId={this.state.groupId}/>}/>
+                    <Route path={'/todos/add'} element={['1', '2', '3'].includes(this.state.groupId) ?
+                        <TodoForm projects={this.state.projects}
+                                  addTodo={this.addTodo}/>
+                        :
+                        <Page404/>
+                    }
+                    />
                     <Route path={'/login'} element={
                         this.isAuthenticated() ? <Navigate to={'/'} replace /> : <LogIn getToken={this.getToken}/>
                     }/>
